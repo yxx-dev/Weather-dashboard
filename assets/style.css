@@ -1,0 +1,18 @@
+body * {
+    border: 1px solid grey;
+}
+
+.subtitle {
+    text-align: left;
+}
+
+#cards {
+    display: flex;
+    justify-content: space-between;
+}
+
+.five-day-details {
+    height: 100px; 
+    width: 18%;
+}
+
