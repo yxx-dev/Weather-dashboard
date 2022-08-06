@@ -16,6 +16,11 @@ body * {
     width: 18%;
 }
 
+.btn {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
 .btn-width {
     width: 100%;
 }
