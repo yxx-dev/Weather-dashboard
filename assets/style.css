@@ -1,8 +1,8 @@
-body * {
+.row {
     border: 1px solid grey;
 }
 
-.subtitle {
+.subtitle, h5 {
     text-align: left;
 }
 
@@ -18,7 +18,6 @@ p {
 }
 
 .five-day-details {
-    height: 100px; 
     width: 18%;
 }
 

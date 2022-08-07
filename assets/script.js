@@ -1,12 +1,12 @@
-let city
-let searchHistory = []
-let newSearchHistory
-let searchHistoryListEl = $('.search-history')
-let existInHistory = false
-let lat = 0
-let lon = 0
-let geoCoding 
-let weather
+let city;
+let searchHistory = [];
+let newSearchHistory;
+let searchHistoryListEl = $('.search-history');
+let existInHistory = false;
+let lat = 0;
+let lon = 0;
+let geoCoding;
+let weather;
 
 //read city search history from localStorage
 $(window).on('load',function(){
@@ -106,23 +106,37 @@ function getWeather() {
 
 function displayWeather(input) {
     let currentWeather = input.current;
+    let forecastWeather = input.daily;
     let cloudinessImg = `<img src="http://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@2x.png" height="40em" alt="${currentWeather.weather[0].description}"/>`;
     let showCity = $('.show-city');
-    let showCityParent = $('.show-city-parent')
-    let showCityTemp = $('.show-city-parent p')
+    let showCityParent = $('.show-city-parent');
+    let showCityTemp = $('.show-city-parent p');
+    let forecastCards = $('.five-day-details');
+
     //remove weather details if any
     showCityTemp.remove();
     //display current day weather
-    showCity.html(`${city} (${moment().format('MMMM Do YYYY')}) ${cloudinessImg}`);
+    showCity.html(`${city} (${moment.unix(currentWeather.dt).format('MMMM Do YYYY')}) ${cloudinessImg}`);
     showCityParent.append($('<p>').text(`Temp: ${currentWeather.temp} F`));
     showCityParent.append($('<p>').text(`Wind: ${currentWeather.wind_speed} mph`));
     showCityParent.append($('<p>').text(`Humidity: ${currentWeather.humidity} %`));
     showCityParent.append($('<p>').text(`UV index: ${currentWeather.uvi}`));
-
-    console.log(showCityParent.children().length);
-
-    //display 5-day forecast
-
+    //console.log(showCityParent.children().length);
+    
+    //clear forecast if any
+    forecastCards.children().remove();
+    //display 5-day forecast;
+    for (i=0; i<5; i++) {
+        let day = i+1;
+        let dayEl = $(`#day${day}`);
+        let fiveDayImg = `<img src="http://openweathermap.org/img/wn/${forecastWeather[day].weather[0].icon}@2x.png" height="40em" alt="${forecastWeather[day].weather[0].description}"/>`;
+        
+        dayEl.append($('<h5>').text(moment.unix(forecastWeather[day].dt).format('MMMM Do YYYY')));
+        dayEl.append($('<p>').html(fiveDayImg));
+        dayEl.append($('<p>').text(`Temp: ${forecastWeather[day].temp.day} F`));
+        dayEl.append($('<p>').text(`Wind: ${forecastWeather[day].wind_speed} mph`));
+        dayEl.append($('<p>').text(`Humidity: ${forecastWeather[day].humidity} %`));
+    }    
 }
 
 
