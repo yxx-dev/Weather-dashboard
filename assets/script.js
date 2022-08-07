@@ -121,6 +121,7 @@ function displayWeather(input) {
     showCityParent.append($('<p>').text(`Wind: ${currentWeather.wind_speed} mph`));
     showCityParent.append($('<p>').text(`Humidity: ${currentWeather.humidity} %`));
     showCityParent.append($('<p>').html(`UV index: <span id="uvi">${currentWeather.uvi}</span>`));
+    //set UV index color coding
     let uviText = $('#uvi');
     console.log(uviText, uviText[0].textContent);
     if (uviText[0].textContent<=2) {
@@ -146,7 +147,7 @@ function displayWeather(input) {
         let dayEl = $(`#day${day}`);
         let fiveDayImg = `<img src="http://openweathermap.org/img/wn/${forecastWeather[day].weather[0].icon}@2x.png" height="40em" alt="${forecastWeather[day].weather[0].description}"/>`;
         
-        dayEl.append($('<h5>').text(moment.unix(forecastWeather[day].dt).format('MMMM Do YYYY')));
+        dayEl.append($('<h5>').text(moment.unix(forecastWeather[day].dt).format('MMMM Do')));
         dayEl.append($('<p>').html(fiveDayImg));
         dayEl.append($('<p>').text(`Temp: ${forecastWeather[day].temp.day} F`));
         dayEl.append($('<p>').text(`Wind: ${forecastWeather[day].wind_speed} mph`));
