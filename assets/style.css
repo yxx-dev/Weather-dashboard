@@ -6,6 +6,12 @@ body * {
     text-align: left;
 }
 
+p {
+    text-align: left;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
 #cards {
     display: flex;
     justify-content: space-between;
@@ -24,6 +30,7 @@ body * {
 .btn-width {
     width: 100%;
 }
+
 /*
 .search-history * {
     display: none;
