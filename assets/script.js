@@ -120,7 +120,22 @@ function displayWeather(input) {
     showCityParent.append($('<p>').text(`Temp: ${currentWeather.temp} F`));
     showCityParent.append($('<p>').text(`Wind: ${currentWeather.wind_speed} mph`));
     showCityParent.append($('<p>').text(`Humidity: ${currentWeather.humidity} %`));
-    showCityParent.append($('<p>').text(`UV index: ${currentWeather.uvi}`));
+    showCityParent.append($('<p>').html(`UV index: <span id="uvi">${currentWeather.uvi}</span>`));
+    let uviText = $('#uvi');
+    console.log(uviText, uviText[0].textContent);
+    if (uviText[0].textContent<=2) {
+        uviText.css({'background-color': 'green', 'color': 'white'});
+    } else if (uviText[0].textContent<=5) {
+        uviText.css({'background-color': 'yellow', 'color': 'grey'});
+    } else if (uviText[0].textContent<=7) {
+        uviText.css({'background-color': 'orange', 'color': 'white'});
+    } else if (uviText[0].textContent<=10) {
+        uviText.css({'background-color': 'red', 'color': 'white'});
+    } else {
+        uviText.css({'background-color': 'purple', 'color': 'white'});
+    }
+    
+
     //console.log(showCityParent.children().length);
     
     //clear forecast if any
