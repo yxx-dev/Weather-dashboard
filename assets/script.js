@@ -41,7 +41,14 @@ searchHistoryListEl.on('click', function(event) {
 })
 
 //search function
-$('#searchButton').on('click', function(){
+$('#searchButton').on('click', searchFunction);
+$('#searchInput').on('keyup',function(event){
+    if (event.keyCode === 13) {
+        searchFunction();
+    }
+});
+
+function searchFunction (){
     city = $('#searchInput')[0].value;
     city = city.substr(0,1).toUpperCase()+city.substr(1);
     if($('#searchInput')[0].value) {
@@ -49,11 +56,11 @@ $('#searchButton').on('click', function(){
         getWeather();
     } else alert('Invalid city')
     $('#searchInput')[0].value = '';
-})
+}
 
 function getWeather() {
     //geocoding
-    geoCoding = `http://api.openweathermap.org/geo/1.0/direct?q=${city},US&limit=1&appid=ee2ea348be4426aff9e80806bfe0d841`;
+    geoCoding = `https://api.openweathermap.org/geo/1.0/direct?q=${city},US&limit=1&appid=ee2ea348be4426aff9e80806bfe0d841`;
     fetch(geoCoding)
         .then(function(response) {
             return response.json();
@@ -107,7 +114,7 @@ function getWeather() {
 function displayWeather(input) {
     let currentWeather = input.current;
     let forecastWeather = input.daily;
-    let cloudinessImg = `<img src="http://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@2x.png" height="40em" alt="${currentWeather.weather[0].description}"/>`;
+    let cloudinessImg = `<img src="https://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@2x.png" height="40em" alt="${currentWeather.weather[0].description}"/>`;
     let showCity = $('.show-city');
     let showCityParent = $('.show-city-parent');
     let showCityTemp = $('.show-city-parent p');
@@ -145,7 +152,7 @@ function displayWeather(input) {
     for (i=0; i<5; i++) {
         let day = i+1;
         let dayEl = $(`#day${day}`);
-        let fiveDayImg = `<img src="http://openweathermap.org/img/wn/${forecastWeather[day].weather[0].icon}@2x.png" height="40em" alt="${forecastWeather[day].weather[0].description}"/>`;
+        let fiveDayImg = `<img src="https://openweathermap.org/img/wn/${forecastWeather[day].weather[0].icon}@2x.png" height="40em" alt="${forecastWeather[day].weather[0].description}"/>`;
         
         dayEl.append($('<h5>').text(moment.unix(forecastWeather[day].dt).format('MMMM Do')));
         dayEl.append($('<p>').html(fiveDayImg));
