@@ -24,7 +24,7 @@ NA
 NA
 
 ## Features
-jQuery, Bootstrap, third-party API
+Bootstrap, Openweather API, jQuery, MomentJS
 
 ## How to Contribute
 Coming soon...

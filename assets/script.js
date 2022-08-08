@@ -152,6 +152,7 @@ function displayWeather(input) {
         dayEl.append($('<p>').text(`Temp: ${forecastWeather[day].temp.day} F`));
         dayEl.append($('<p>').text(`Wind: ${forecastWeather[day].wind_speed} mph`));
         dayEl.append($('<p>').text(`Humidity: ${forecastWeather[day].humidity} %`));
+        dayEl.css("background", "lightblue");
     }    
 }
 

@@ -1,5 +1,9 @@
 .row {
-    border: 1px solid grey;
+    /*border: 1px solid grey;*/
+}
+
+header {
+    background-image: linear-gradient(to right, green, orange);
 }
 
 .subtitle, h5 {
@@ -28,6 +32,10 @@ p {
 
 .btn-width {
     width: 100%;
+}
+
+#clear-button {
+    border: 1px dashed lightgrey;
 }
 
 /*
